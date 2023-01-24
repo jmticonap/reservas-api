@@ -17,7 +17,7 @@ const userService = {
   },
   findAll: async () => {
     try {
-      return UserModel.findAll({
+      return await UserModel.findAll({
         attributes: {
           exclude: ["password"]
         }

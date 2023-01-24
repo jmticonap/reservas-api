@@ -11,7 +11,7 @@ const userController = {
             next({
                 status: 418,
                 errorContent: error,
-                message: "Problem creating new user."
+                message: "Problem creating new user"
             })
         }
     },
@@ -25,7 +25,7 @@ const userController = {
             next({
                 status: 418,
                 errorContent: error,
-                message: "Error fetching users."
+                message: "Error fetching users"
             })
         }
 

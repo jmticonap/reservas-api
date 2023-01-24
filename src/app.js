@@ -2,15 +2,18 @@
 const express = require('express')
 const cors = require('cors')
 const db = require('./database/database')
-const errorHandler = require('./middlewares/error.middleware')
 const initModels = require('./models/initModels')
+const initData = require('./seeders/initData')
 const compression = require('compression')
 const helmet = require('helmet')
 
+const errorHandler = require('./middlewares/error.middleware')
+const authenticate = require('./middlewares/auth.middleware')
+
 const userRouter = require('./routers/user.route')
 const authRouter = require('./routers/auth.route')
+const clientRouter = require('./routers/client.router')
 
-//const initData = require('./seeders/initData')
 
 const app = express()
 
@@ -29,7 +32,7 @@ Promise
   })
   .then(() => {
     console.log('db.sync\t\t ...done')
-    //process.env.NODE_ENV !== 'pro' && initData(db)
+    process.env.NODE_ENV !== 'pro' && initData(db)
   })
   .catch(error => {
     console.error(error)
@@ -46,6 +49,7 @@ app.get('/', (req, res, next) => {
 const basePath = '/api/'
 app.use(basePath, userRouter)
 app.use(basePath, authRouter)
+app.use(basePath, authenticate, clientRouter)
 
 app.use(errorHandler)
 

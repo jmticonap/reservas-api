@@ -2,6 +2,12 @@ const db = require("../database/database");
 const { DataTypes } = require("sequelize")
 const bcrypt = require("bcrypt")
 
+const encryptPassword = user => {
+  const { password } = user;
+  const hash = bcrypt.hashSync(password, 8);
+  user.password = hash;
+}
+
 const UserModel = db.define("user", {
   id: {
     type: DataTypes.BIGINT,
@@ -26,10 +32,9 @@ const UserModel = db.define("user", {
 }, {
   timestamps: false,
   hooks: {
-    beforeCreate:   user => {
-      const { password } = user;
-      const hash = bcrypt.hashSync(password, 8);
-      user.password = hash;
+    beforeCreate:   encryptPassword,
+    beforeBulkCreate: users => {
+      users.forEach(encryptPassword)
     }
   }
 })

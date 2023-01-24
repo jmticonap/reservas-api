@@ -23,7 +23,7 @@ const authenticate = (req, res, next) => {
     } else {
         next({
             status: 400,
-            errorContent: { message: "" },
+            errorContent: { message: "No token in headers" },
             message: "Token is not able.",
         });
     }
