@@ -13,6 +13,7 @@ const authenticate = require('./middlewares/auth.middleware')
 const userRouter = require('./routers/user.route')
 const authRouter = require('./routers/auth.route')
 const clientRouter = require('./routers/client.router')
+const roomRouter = require('./routers/room.router')
 
 
 const app = express()
@@ -50,6 +51,7 @@ const basePath = '/api/'
 app.use(basePath, userRouter)
 app.use(basePath, authRouter)
 app.use(basePath, authenticate, clientRouter)
+app.use(basePath, authenticate, roomRouter)
 
 app.use(errorHandler)
 

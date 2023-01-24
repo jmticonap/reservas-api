@@ -9,13 +9,15 @@ const RoomModel = db.define('room', {
     autoIncrement: true
   },
   number: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   bedsQuantity: {
     type: DataTypes.INTEGER,
     allowNull: false
   }
+}, {
+  timestamps: false
 })
 
 module.exports = RoomModel
