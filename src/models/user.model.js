@@ -24,6 +24,7 @@ const UserModel = db.define("user", {
     allowNull: false
   }  
 }, {
+  timestamps: false,
   hooks: {
     beforeCreate:   user => {
       const { password } = user;

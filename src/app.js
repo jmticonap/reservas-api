@@ -7,6 +7,9 @@ const initModels = require('./models/initModels')
 const compression = require('compression')
 const helmet = require('helmet')
 
+const userRouter = require('./routers/user.route')
+const authRouter = require('./routers/auth.route')
+
 //const initData = require('./seeders/initData')
 
 const app = express()
@@ -40,6 +43,9 @@ app.get('/', (req, res, next) => {
     })
   next()
 })
+const basePath = '/api/'
+app.use(basePath, userRouter)
+app.use(basePath, authRouter)
 
 app.use(errorHandler)
 
