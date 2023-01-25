@@ -14,6 +14,7 @@ const userRouter = require('./routers/user.route')
 const authRouter = require('./routers/auth.route')
 const clientRouter = require('./routers/client.router')
 const roomRouter = require('./routers/room.router')
+const reservationRouter = require('./routers/reservation.route')
 
 
 const app = express()
@@ -52,6 +53,7 @@ app.use(basePath, userRouter)
 app.use(basePath, authRouter)
 app.use(basePath, authenticate, clientRouter)
 app.use(basePath, authenticate, roomRouter)
+app.use(basePath, authenticate, reservationRouter)
 
 app.use(errorHandler)
 

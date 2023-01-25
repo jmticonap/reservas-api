@@ -13,6 +13,11 @@ const rooms = [
   { number: "302", bedsQuantity: 3 },
   { number: "303", bedsQuantity: 2 },
   { number: "304", bedsQuantity: 3 },
+
+  { number: "401", bedsQuantity: 2 },
+  { number: "402", bedsQuantity: 2 },
+  { number: "403", bedsQuantity: 2 },
+  { number: "404", bedsQuantity: 2 },
   
 ]
 

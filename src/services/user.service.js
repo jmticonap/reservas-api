@@ -25,6 +25,15 @@ const userService = {
     } catch (error) {
       throw (error)
     }
+  },
+  findByPk: async id => {
+    try {
+      return await UserModel.findAll({
+        where: { id }
+      })
+    } catch (error) {
+      throw (error)
+    }
   }
 }
 

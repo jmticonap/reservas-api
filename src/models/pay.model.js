@@ -10,8 +10,7 @@ const PayModel = db.define('pay', {
   },
   method: {
     type: DataTypes.ENUM(['efectivo', 'transferencia']),
-    defaultValue: 'transferencia',
-    allowNull: false
+    allowNull: true
   },
   quantity: {
     type: DataTypes.DOUBLE,
@@ -21,6 +20,6 @@ const PayModel = db.define('pay', {
     type: DataTypes.STRING,
     allowNull: true
   }
-})
+}, { timestamps: false })
 
 module.exports = PayModel

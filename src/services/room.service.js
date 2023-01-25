@@ -17,6 +17,15 @@ const roomService = {
     } catch (error) {
       throw(error)
     }
+  },
+  findByName: async name => {
+    try {
+      return await RoomModel.findOne({
+        where: { name }
+      })
+    } catch (error) {
+      throw(error)
+    }
   }
 }
 
