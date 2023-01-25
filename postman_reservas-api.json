@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "e9c0cfff-975d-4922-be02-3d26f1ca1119",
+		"name": "reserva-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7242232"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "allUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/user",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"juan@gmail.com\",\n    \"name\":\"Juan Ticona\",\n    \"password\":\"juan\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/user",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"donovan@gmail.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "allClients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/client",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newClient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shaquille O'Neal\",\n    \"document\": \"83746582\",\n    \"documentType\": \"dni\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/client",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "room",
+			"item": [
+				{
+					"name": "allRooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/room",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newRooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": \"401\",\n    \"bedsQuantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/room",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"room"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservation",
+			"item": [
+				{
+					"name": "newReservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservation\": {\n        \"state\": \"pendiente\",\n        \"dateCheckIn\": \"2023-01-26\",\n        \"dateCheckOut\": \"2023-01-30\",\n        \"pay\": {\n            \"quantity\": 250.5\n        },\n        \"rooms\": [1,2]\n    },\n    \"client\": {\n        \"id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/reservation",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nextWeekReservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/reservation",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "nextWeekReservationsPendiente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/reservation/pendiente",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"reservation",
+								"pendiente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payReservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"pay\": {\n        \"method\": \"transferencia\",\n        \"operationNumber\": \"0854963\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/reservation/pay",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"reservation",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
