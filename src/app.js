@@ -10,12 +10,12 @@ const helmet = require('helmet')
 const errorHandler = require('./middlewares/error.middleware')
 const authenticate = require('./middlewares/auth.middleware')
 
+const utilRouter = require('./routers/util.route')
 const userRouter = require('./routers/user.route')
 const authRouter = require('./routers/auth.route')
 const clientRouter = require('./routers/client.router')
 const roomRouter = require('./routers/room.router')
 const reservationRouter = require('./routers/reservation.route')
-
 
 const app = express()
 
@@ -51,6 +51,7 @@ app.get('/', (req, res, next) => {
 const basePath = '/api/'
 app.use(basePath, userRouter)
 app.use(basePath, authRouter)
+app.use(basePath, utilRouter)
 app.use(basePath, authenticate, clientRouter)
 app.use(basePath, authenticate, roomRouter)
 app.use(basePath, authenticate, reservationRouter)

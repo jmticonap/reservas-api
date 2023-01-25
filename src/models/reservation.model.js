@@ -20,6 +20,10 @@ const ReservationModel = db.define('reservation', {
   dateCheckOut: {
     type: DataTypes.DATEONLY,
     allowNull: false
+  },
+  notes: {
+    type: DataTypes.TEXT('medium'),
+    allowNull: true
   }
 })
 
