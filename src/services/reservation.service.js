@@ -6,22 +6,22 @@ const db = require('../database/database')
 const { Op } = require('sequelize')
 const RoomModel = require('../models/room.model')
 
+const includePayModel = {
+  model: PayModel,
+  as: 'pay'
+}
+const includeReservationRoomModel = [
+  { model: ReservationModel, as: 'reservation' },
+  { model: RoomModel, as: 'room' }
+]
+
 const reservationService = {
   create: async (reservation, user, client) => {
     try {
       const t = await db.transaction()
       const rooms = [...reservation.rooms]
       delete reservation.rooms
-
-      const includePayModel = {
-        model: PayModel,
-        as: 'pay'
-      }
-      const includeReservationRoomModel = [
-        { model: ReservationModel, as: 'reservation' },
-        { model: RoomModel, as: 'room' }
-      ]
-
+      
       const newReservation = await ReservationModel
         .create(
           {
@@ -62,25 +62,11 @@ const reservationService = {
     }
   },
   bulkCreate: async (reservations, user, client) => {
-    const t = await db.transaction()
-    const newReservations = reservations.map(reservation => ({
-      ...reservation,
-      user_id: user.id,
-      client_id: client.id
-    }))
-    await ReservationModel.bulkCreate(
-      newReservations,
-      {
-        include: {
-          model: PayModel,
-          as: 'pay'
-        },
-        transaction: t
-      })
+    const newReservations = reservations.map(async reservation => {
+      return await reservationService.create(reservation, user, client)
+    })
 
-    await t.commit()
-
-    return reservations
+    return newReservations
   },
   findNextWeek: async () => {
     try {
@@ -91,6 +77,38 @@ const reservationService = {
           [Op.and]: [
             { dateCheckIn: { [Op.gte]: new Date() } },
             { dateCheckIn: { [Op.lte]: nextWeek } }
+          ]
+        },
+        include: [
+          {
+            model: PayModel,
+            as: 'pay',
+            attributes: {
+              exclude: ['reservation_id']
+            }
+          },
+          {
+            model: RoomModel,
+            as: 'reservationRoom'
+          }
+        ]
+      })
+
+      return reservations
+    } catch (error) {
+      throw (error)
+    }
+  },
+  findNextWeekPendiente: async () => {
+    try {
+      const nextWeek = new Date(Date.now() + (1000 * 60 * 60 * 24 * 7))
+
+      const reservations = await ReservationModel.findAll({
+        where: {
+          [Op.and]: [
+            { dateCheckIn: { [Op.gte]: new Date() } },
+            { dateCheckIn: { [Op.lte]: nextWeek } },
+            { state: { [Op.eq]: 'pendiente' } }
           ]
         },
         include: [

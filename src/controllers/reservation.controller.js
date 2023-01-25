@@ -33,6 +33,20 @@ const reservationController = {
       })
     }
   },
+  findNextWeekPendiente: async (req, res, next) => {
+    try {
+      const reservations = await reservationService.findNextWeekPendiente()
+      res
+        .status(200)
+        .json(reservations)
+    } catch (error) {
+      next({
+        status: 418,
+        errorContent: error,
+        message: "Problem fetching next week reservations"
+      })
+    }
+  },
   payReservation: async (req, res, next) => {
     try {
       const id = req.body.id

@@ -6,7 +6,8 @@ const reservations = [
     dateCheckOut: new Date(Date.now() + (1000 * 60 * 60 * 24 * 6)),
     pay: {
       quantity: 250.5
-    }
+    },
+    rooms: [1, 2]
   },
   {
     state: 'pendiente',
@@ -14,7 +15,8 @@ const reservations = [
     dateCheckOut: new Date(Date.now() + (1000 * 60 * 60 * 24 * 14)),
     pay: {
       quantity: 340.5
-    }
+    },
+    rooms: [5, 6]
   }
 ]
 
