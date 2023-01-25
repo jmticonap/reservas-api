@@ -76,3 +76,12 @@ POST: Permite pagar una reserva en el sistema
     }
 }
 ```
+
+### /api/reservation/freerooms [POST][AUTH]
+POST: Permite listar las habitación que estan libres entre dos fechas establecidas
+```json
+{
+    "since": "2023-01-25",
+    "until": "2023-01-28"
+}
+```

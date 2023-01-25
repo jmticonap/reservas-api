@@ -205,7 +205,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"number\": \"401\",\n    \"bedsQuantity\": 2\n}",
+							"raw": "{\n    \"number\": \"401\", \n    \"bedsQuantity\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,7 +248,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"reservation\": {\n        \"state\": \"pendiente\",\n        \"dateCheckIn\": \"2023-01-26\",\n        \"dateCheckOut\": \"2023-01-30\",\n        \"pay\": {\n            \"quantity\": 250.5\n        },\n        \"rooms\": [1,2]\n    },\n    \"client\": {\n        \"id\": 2\n    }\n}",
+							"raw": "{\n    \"reservation\": {\n        \"state\": \"pendiente\",\n        \"dateCheckIn\": \"2023-01-27\",\n        \"dateCheckOut\": \"2023-01-30\",\n        \"pay\": {\n            \"quantity\": 180.5\n        },\n        \"rooms\": [8,9]\n    },\n    \"client\": {\n        \"id\": 1\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -362,6 +362,45 @@
 							"path": [
 								"reservation",
 								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findFreeRooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"since\": \"2023-01-25\",\n    \"until\": \"2023-01-28\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{HOSTNAME}}:{{PORT}}{{BASE_PATH}}/reservation/freerooms",
+							"protocol": "http",
+							"host": [
+								"{{HOSTNAME}}"
+							],
+							"port": "{{PORT}}{{BASE_PATH}}",
+							"path": [
+								"reservation",
+								"freerooms"
 							]
 						}
 					},
