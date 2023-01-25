@@ -21,7 +21,7 @@ const reservationService = {
       const t = await db.transaction()
       const rooms = [...reservation.rooms]
       delete reservation.rooms
-      
+
       const newReservation = await ReservationModel
         .create(
           {
@@ -130,6 +130,37 @@ const reservationService = {
     } catch (error) {
       throw (error)
     }
+  },
+  findFreeRoomsBetween: async (since, until) => {
+    
+    const reservations = await ReservationModel.findAll({
+      where: {
+        [Op.and]: [
+          { dateCheckIn: { [Op.gte]: new Date(since) } },
+          { dateCheckIn: { [Op.lte]: new Date(until) } }
+        ]
+      },
+      include: [
+        {
+          model: RoomModel,
+          as: 'reservationRoom'
+        }
+      ]
+    })
+    const takeRoomsId = new Set()
+    reservations.forEach(reserv => reserv.reservationRoom.forEach(room => {
+      //making an array with taken room ids 
+      takeRoomsId.add(room.id)
+    }))
+    const freeRooms = await RoomModel.findAll({
+      where: {
+        id: {
+          [Op.notIn]: Array.from(takeRoomsId)
+        }
+      }
+    })
+
+    return freeRooms
   },
   payReservation: async (id, pay) => {
     try {

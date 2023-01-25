@@ -19,6 +19,22 @@ const reservationController = {
       })
     }
   },
+  findFreeRoomsBetween: async (req, res, next) => {
+    try {
+      const since = req.body.since
+      const until = req.body.until
+      const rooms = await reservationService.findFreeRoomsBetween(since, until)
+      res
+        .status(200)
+        .json(rooms)
+    } catch (error) {
+      next({
+        status: 418,
+        errorContent: error,
+        message: "Problem fetching free rooms"
+      })
+    }
+  },
   findNextWeek: async (req, res, next) => {
     try {
       const reservations = await reservationService.findNextWeek()
