@@ -1,6 +1,8 @@
 const app = require('./app')
 
-const HOSTNAME = 'localhost'
+const HOSTNAME = process.env.HOSTNAME
+  ? process.env.HOSTNAME
+  : 'localhost'
 const PORT = process.env.PORT
   ? process.env.PORT
   : '8000'
