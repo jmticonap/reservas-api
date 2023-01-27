@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize')
-require('dotenv').config()
+process.env.NODE_ENV !== 'pro' && require('dotenv').config()
 
 const db = new Sequelize(
   process.env.NODE_ENV === 'pro'

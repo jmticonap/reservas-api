@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest",
     "dev": "NODE_ENV=dev nodemon src/server.js",
-    "start": "NODE_ENV=pro node src/server.js"
+    "start": "NODE_ENV=pro node src/server.js",
+    "pro": "node src/server.js"
   },
   "author": "Juan Manuel Ticona Pacheco",
   "license": "ISC",
