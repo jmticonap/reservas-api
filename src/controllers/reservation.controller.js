@@ -78,6 +78,21 @@ const reservationController = {
         message: "Problem making the resevation pay"
       })
     }
+  },
+  setEliminadoReservation: async (req, res, next) => {
+    try {
+      const { id } = req.params
+      const count = await reservationService.setEliminadoReservation(id)
+      res
+        .status(200)
+        .json({ count })
+    } catch (error) {
+      next({
+        status: 418,
+        errorContent: error,
+        message: 'We can\'t set status as "eliminado"'
+      })
+    }
   }
 }
 

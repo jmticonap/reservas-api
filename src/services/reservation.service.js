@@ -132,7 +132,7 @@ const reservationService = {
     }
   },
   findFreeRoomsBetween: async (since, until) => {
-    
+
     const reservations = await ReservationModel.findAll({
       where: {
         [Op.and]: [
@@ -184,6 +184,24 @@ const reservationService = {
       await t.commit()
 
       return reservation
+    } catch (error) {
+      throw (error)
+    }
+  },
+  setEliminadoReservation: async id => {
+    try {
+      const t = await db.transaction()
+      const count = await ReservationModel.update({
+        state: 'eliminado'
+      }, {
+        where: {
+          id
+        },
+        transaction: t
+      })
+      await t.commit()
+
+      return count
     } catch (error) {
       throw (error)
     }
