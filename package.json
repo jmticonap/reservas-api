@@ -6,7 +6,7 @@
   "scripts": {
     "test": "vitest",
     "dev": "NODE_ENV=dev nodemon src/server.js",
-    "start": "NODE_ENV=pro node src/server.js",
+    "start": "NODE_ENV=pro PRO_DB_URI=postgres://jmtp_user:i1BQ9zO5gfOqehs6lygFEZBnmlZDjsVL@dpg-ce1t3g9a6gdsa63us9i0-a.oregon-postgres.render.com/jmtp_db node src/server.js",
     "pro": "node src/server.js"
   },
   "author": "Juan Manuel Ticona Pacheco",
