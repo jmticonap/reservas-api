@@ -22,7 +22,7 @@ const ReservationModel = db.define('reservation', {
     allowNull: false
   },
   notes: {
-    type: DataTypes.TEXT('medium'),
+    type: DataTypes.TEXT,
     allowNull: true
   }
 })
